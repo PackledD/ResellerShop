@@ -1,0 +1,34 @@
+﻿@model BuisnessLogic.models.Product
+@{
+    ViewData["Title"] = "Добавление товара";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Добавить товар на склад</h1>
+</div>
+
+<div class="column-md-18">
+    <br>
+    <div class="column-md-16" style="border-style: solid; border-width: 2px; align-content: center; width: 50%; margin: 0 auto">
+        <form method="post" asp-controller="Firm" asp-action="ProductAdd" asp-route-id=@Model.Id>
+            <div class="text-center">
+                Название: @Model.Name
+            </div>
+            <br />
+            <div class="text-center">
+                Склад:
+                <select name="wh" class="form-control" asp-items=@ViewBag.Warehouses required>
+                </select>
+            </div>
+            <div class="text-center">
+                Количество:
+                <input class="form-control" min="1" type="number" name="amount" required />
+            </div>
+            <br />
+            <button type="submit" style="width: 20%; margin-left: 40%" class="btn-primary">
+                Добавить
+            </button>
+        </form>
+        <br />
+    </div>
+</div>

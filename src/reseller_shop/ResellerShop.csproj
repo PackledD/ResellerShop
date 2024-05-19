@@ -1,0 +1,50 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="config\**" />
+    <Compile Remove="data_access\**" />
+    <Compile Remove="db_connect\**" />
+    <Compile Remove="exceptions\**" />
+    <Compile Remove="interfaces\**" />
+    <Compile Remove="logic\**" />
+    <Compile Remove="utils\**" />
+    <EmbeddedResource Remove="config\**" />
+    <EmbeddedResource Remove="data_access\**" />
+    <EmbeddedResource Remove="db_connect\**" />
+    <EmbeddedResource Remove="exceptions\**" />
+    <EmbeddedResource Remove="interfaces\**" />
+    <EmbeddedResource Remove="logic\**" />
+    <EmbeddedResource Remove="utils\**" />
+    <None Remove="config\**" />
+    <None Remove="data_access\**" />
+    <None Remove="db_connect\**" />
+    <None Remove="exceptions\**" />
+    <None Remove="interfaces\**" />
+    <None Remove="logic\**" />
+    <None Remove="utils\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="enums\UsersEnum.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Npgsql" Version="8.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BuisnessLogic\BuisnessLogic.csproj" />
+    <ProjectReference Include="..\DataAccess\PostgresDataAccess.csproj" />
+    <ProjectReference Include="..\Exceptions\Exceptions.csproj" />
+    <ProjectReference Include="..\General\General.csproj" />
+    <ProjectReference Include="..\Logger\Logger.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,100 @@
+﻿@model BuisnessLogic.models.User
+@{
+    ViewData["Title"] = "Контракт";
+    var tmp = Model != null && Model.Firm.Id == 0;
+}
+
+<div class="text-center">
+    <h1 class="display-4">Контракт</h1>
+</div>
+
+<div class="column-md-18">
+    <br>
+    <div class="column-md-16" style="border-style: solid; border-width: 2px; align-content: center; width: 50%; margin: 0 auto">
+        <form method="post" asp-controller="Firm" asp-action="ContractCreate" enctype="multipart/form-data">
+            <div class="text-center">
+                Дата заключения:
+                <input class="form-control" type="date" name="concl" required />
+            </div>
+            <div class="text-center">
+                Дата истечения:
+                <input class="form-control" type="date" name="expir" required />
+            </div>
+            <div class="text-center">
+                Документ:
+                <input class="form-control" type="file" name="document" required />
+            </div>
+            @if (tmp)
+            {
+                <div class="text-center">
+                    Фирма:
+                    <select name="firmId" class="form-control" asp-items=@ViewBag.Firms required>
+                    </select>
+                </div>
+            }
+            <br />
+            <table>
+                <thead>
+                    <tr>
+                        <td>
+                            <label>Товар</label>
+                        </td>
+                        <td>
+                            <label>Склад</label>
+                        </td>
+                        <td>
+                            <label>Количество</label>
+                        </td>
+                    </tr>
+                </thead>
+                <tbody class="table" id="tbbody">
+
+                </tbody>
+            </table>
+            <br />
+            <div><input type="button" id="btnAddNew" value="Добавить позицию" class="btn-primary" style="width: 40%; margin-left: 30%" /></div>
+            <br />
+            <div><input type="submit" value="Создать контракт" class="btn-primary" style="width: 40%; margin-left: 30%" /></div>
+        </form>
+        <br />
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        var True = true; False = false;
+        function fixSelectNames(cnt) {
+        $("[name='Products'").each(function () {
+        $(this).attr("name", "pos[" + cnt + "].Product");
+        });
+        $("[name='Warehouses'").each(function () {
+        $(this).attr("name", "pos[" + cnt + "].Warehouse");
+        });
+        }
+        $(function () {
+        $("#btnAddNew").click(function () {
+        var count = $("#tbbody >tr").length;
+        $("#tbbody").append("<tr><td> <input class='form-control' id='prod' name='pos[" + count + "].Product'> </td>" +
+                                "<td> <input class='form-control' id='wh' name='pos[" + count + "].Warehouse'> </td>" +
+                                "<td> <input class='form-control' id='amn' name='pos[" + count + "].Amount' min='0'> </td>" +
+                                "<td> <input type='button' class='btnremove' value='Удалить'/> </td> </tr>");
+                AddRemoveAction();
+            });
+
+
+            AddRemoveAction();
+
+            function AddRemoveAction(){
+                $(".btnremove").each(function(index, item){
+                    $(item).click(function(){
+                        $(this).closest('tr').remove();
+                    });
+
+                })
+            }
+        });
+    </script>
+}

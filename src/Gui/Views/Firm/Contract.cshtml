@@ -1,0 +1,109 @@
+﻿@model Gui.Models.ContractWithPositions
+@{
+    ViewData["Title"] = "Контракт";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Контракт</h1>
+</div>
+@if (Model == null || Model.Contract == null || Model.User == null)
+{
+    <div class="text-center" id="error-div">
+        <h3 style="color: red">Ошибка отображения информации</h3>
+    </div>
+}
+else
+{
+    <div class="column-md-18">
+        <br>
+        <div class="column-md-16" style="border-style: solid; border-width: 2px; align-content: center; width: 50%; margin: 0 auto">
+            <div class="text-center" style="font-size: 18px">
+                Контракт номер @Model.Contract.Id
+            </div>
+            <div class="text-center">
+                Менеджер 1: @Model.Contract.Manager1?.FullName
+            </div>
+            <div class="text-center">
+                Менеджер 2: @Model.Contract.Manager2?.FullName
+            </div>
+            <div class="text-center">
+                Руководитель 1: @Model.Contract.Director1?.FullName
+            </div>
+            <div class="text-center">
+                Руководитель 2: @Model.Contract.Director2?.FullName
+            </div>
+            <div class="text-center">
+                Дата заключения: @Model.Contract.ConclusionDate.ToShortDateString()
+            </div>
+            <div class="text-center">
+                Дата истечения: @Model.Contract.ExpirationDate.ToShortDateString()
+            </div>
+            <div class="text-center">
+                Документ: <a target="_blank" href="/files/@Model.Contract.Document">@Model.Contract.Document</a>
+            </div>
+        </div>
+        <br>
+        @if (Model.User.IsDirector())
+        {
+            <form method="post" asp-controller="Firm" asp-action="DelContract" asp-route-id=@Model.Contract.Id>
+                <button type="submit" style="width: 20%; margin-left: 40%" class="btn-primary">
+                    Удалить
+                </button>
+            </form>
+            <br />
+            <form method="post" asp-controller="Firm" asp-action="Sign" asp-route-id=@Model.Contract.Id>
+                @if (Model.Contract.CanSign(Model.User))
+                {
+                    <button type="submit" style="width: 20%; margin-left: 40%" class="btn-primary">
+                        Подписать
+                    </button>
+                }
+                else
+                {
+                    <button type="submit" style="width: 20%; margin-left: 40%; background-color: cornflowerblue" class="btn-primary" disabled>
+                        Подписать
+                    </button>
+                }
+            </form>
+        }
+        @if (Model.User.IsManager())
+        {
+            <form method="post" asp-controller="Firm" asp-action="Approve" asp-route-id=@Model.Contract.Id>
+                @if (Model.Contract.CanApprove(Model.User))
+                {
+                    <button type="submit" style="width: 20%; margin-left: 40%" class="btn-primary">
+                        Утвердить
+                    </button>
+                }
+                else
+                {
+                    <button type="submit" style="width: 20%; margin-left: 40%; background-color: cornflowerblue" class="btn-primary" disabled>
+                        Утвердить
+                    </button>
+                }
+            </form>
+        }
+        <br>
+        @if (Model.Positions.Count == 0)
+        {
+            <div class="text-center" id="error-div">
+                <h4>Позиций нет</h4>
+            </div>
+        }
+        @foreach (var elem in Model.Positions)
+        {
+            <div class="column-md-16" style="border-style: solid; border-width: 2px; align-content: center; width: 50%; margin: 0 auto">
+                <div class="text-center">
+                    Товар: @elem.Product.Name
+                </div>
+                <div class="text-center">
+                    Количество: @elem.Amount
+                </div>
+                <div class="text-center">
+                    Склад: @elem.Warehouse.Address
+                </div>
+            </div>
+            <br>
+        }
+    </div>
+}

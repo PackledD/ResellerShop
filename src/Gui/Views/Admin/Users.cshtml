@@ -1,0 +1,58 @@
+﻿@using BuisnessLogic.models
+@{
+    ViewData["Title"] = "Пользователи";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Все пользователи</h1>
+</div>
+@if (ViewBag.Users == null)
+{
+    <div class="text-center" id="error-div">
+        <h3 style="color: red">Ошибка отображения информации</h3>
+    </div>
+}
+else
+{
+    <div class="column-md-18">
+        <br>
+        @if (ViewBag.Users.Count == 0)
+        {
+            <div class="text-center" id="error-div">
+                <h4>Пользователей нет</h4>
+            </div>
+        }
+        <br>
+        <form method="get" asp-controller="Admin" asp-action="UserCreate">
+            <button type="submit" style="width: 20%; margin-left: 40%" class="btn-primary">
+                Добавить пользователя
+            </button>
+        </form>
+        <br>
+        @foreach (var elem in (ViewBag.Users as List<User>))
+        {
+            <div class="column-md-16" style="border-style: solid; border-width: 2px; align-content: center; width: 50%; margin: 0 auto">
+                <div class="text-center" style="font-size: 18px">
+                    <a asp-controller="Admin" asp-action="User" asp-route-id=@elem.Id>Пользователь номер @elem.Id</a>
+                </div>
+                <div class="text-center">
+                    ФИО: @elem.FullName
+                </div>
+                <div class="text-center">
+                    Фирма: @elem.Firm.Name
+                </div>
+                <div class="text-center">
+                    Email: @elem.Email
+                </div>
+                <div class="text-center">
+                    Телефон: @elem.Phone
+                </div>
+                <div class="text-center">
+                    Статус: @elem.UserKind.ToString()
+                </div>
+            </div>
+            <br>
+            <br>
+        }
+    </div>
+}

@@ -1,0 +1,55 @@
+﻿@model Gui.Models.FirmProducts
+@{
+    ViewData["Title"] = "Товары";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Товары фирмы</h1>
+</div>
+@if (Model == null || Model.Firm == null)
+{
+    <div class="text-center" id="error-div">
+        <h3 style="color: red">Ошибка отображения информации</h3>
+    </div>
+}
+else
+{
+    <div class="column-md-18">
+        <br>
+        @if (Model.Products.Count == 0)
+        {
+            <div class="text-center" id="error-div">
+                <h4>Товаров нет</h4>
+            </div>
+        }
+        <br>
+        <form method="get" asp-controller="Firm" asp-action="ProductCreate">
+            <button type="submit" style="width: 20%; margin-left: 40%" class="btn-primary">
+                Добавить новый товар
+            </button>
+        </form>
+        <br>
+        @foreach (var elem in Model.Products)
+        {
+            <div class="column-md-16" style="border-style: solid; border-width: 2px; align-content: center; width: 50%; margin: 0 auto">
+                <div class="text-center" style="font-size: 18px">
+                    <a asp-controller="Firm" asp-action="Product" asp-route-id=@elem.Id>Товар номер @elem.Id</a>
+                </div>
+                <div class="text-center" style="font-size=18px">
+                    Название: @elem.Name
+                </div>
+                <div class="text-center">
+                    Категория: @elem.Category.Name
+                </div>
+                <div class="text-center">
+                    Цена: @elem.Cost
+                </div>
+                <div class="text-center">
+                    Производитель: @elem.Producer.Name
+                </div>
+            </div>
+            <br>
+            <br>
+        }
+    </div>
+}

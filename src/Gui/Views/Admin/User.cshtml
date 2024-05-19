@@ -1,0 +1,54 @@
+﻿@using BuisnessLogic.models
+@model User
+@{
+    ViewData["Title"] = "Пользователь";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Пользователь</h1>
+</div>
+@if (User == null)
+{
+    <div class="text-center" id="error-div">
+        <h3 style="color: red">Ошибка отображения информации</h3>
+    </div>
+}
+else
+{
+    <div class="column-md-18">
+        <div class="column-md-16" style="border-style: solid; border-width: 2px; align-content: center; width: 50%; margin: 0 auto">
+            <div class="text-center" style="font-size: 18px">
+                Пользователь номер @Model.Id
+            </div>
+            <div class="text-center">
+                ФИО: @Model.FullName
+            </div>
+            <div class="text-center">
+                Фирма: @Model.Firm.Name
+            </div>
+            <div class="text-center">
+                Email: @Model.Email
+            </div>
+            <div class="text-center">
+                Телефон: @Model.Phone
+            </div>
+            <div class="text-center">
+                Статус: @Model.UserKind.ToString()
+            </div>
+        </div>
+        <br>
+        <br>
+        <form method="get" asp-controller="Admin" asp-action="UserEdit" asp-route-id=@Model.Id>
+            <button type="submit" style="width: 20%; margin-left: 40%" class="btn-primary">
+                Изменить пользователя
+            </button>
+        </form>
+        <br>
+        <form method="post" asp-controller="Admin" asp-action="UserDelete" asp-route-id=@Model.Id>
+            <button type="submit" style="width: 20%; margin-left: 40%" class="btn-primary">
+                Удалить пользователя
+            </button>
+        </form>
+        <br>
+    </div>
+}

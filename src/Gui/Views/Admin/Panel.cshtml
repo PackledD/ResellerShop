@@ -1,0 +1,46 @@
+﻿@{
+    ViewData["Title"] = "Админ панель";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Админ панель</h1>
+</div>
+
+<div class="column-md-18">
+    <br>
+    <form method="get" asp-action="Warehouses">
+        <button type="submit" class="btn-primary" style="width: 40%; margin-left: 30%">
+            Управлять складами
+        </button>
+    </form>
+    <br>
+    <form method="get" asp-action="Categories">
+        <button type="submit" class="btn-primary" style="width: 40%; margin-left: 30%">
+            Управлять категориями
+        </button>
+    </form>
+    <br>
+    <form method="get" asp-action="Products">
+        <button type="submit" class="btn-primary" style="width: 40%; margin-left: 30%">
+            Управлять товарами
+        </button>
+    </form>
+    <br>
+    <form method="get" asp-action="Firms">
+        <button type="submit" class="btn-primary" style="width: 40%; margin-left: 30%">
+            Управлять фирмами
+        </button>
+    </form>
+    <br>
+    <form method="get" asp-action="Users">
+        <button type="submit" class="btn-primary" style="width: 40%; margin-left: 30%">
+            Управлять пользователями
+        </button>
+    </form>
+    <br>
+    <form method="get" asp-action="Producers">
+        <button type="submit" class="btn-primary" style="width: 40%; margin-left: 30%">
+            Управлять производителями
+        </button>
+    </form>
+</div>

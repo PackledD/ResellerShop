@@ -1,0 +1,53 @@
+﻿@model BuisnessLogic.models.User
+@{
+    ViewData["Title"] = "Личный кабинет";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Личный кабинет</h1>
+</div>
+@if (Model == null)
+{
+    <div class="text-center" id="error-div">
+        <h3 style="color: red">Ошибка отображения информации</h3>
+    </div>
+}
+else
+{
+    <div class="column-md-18">
+        <form method="post" asp-controller="ProfileEdit" asp-action="ProfileEdit">
+        <div class="row">
+            ФИО:
+            <input class="form-control" type="text" value="@Model.FullName" name="fullname" required/>
+        </div>
+        <div class="row">
+            Фирма:
+            <select>
+                <option>
+                    @Model.Firm.Name
+                </option>
+            </select>
+        </div>
+        <div class="row">
+            Email:
+            <input class="form-control" type="email" value="@Model.Email" name="email" required />
+        </div>
+        <div class="row">
+            Телефон:
+            <input class="form-control" type="text" value="@Model.Phone" name="phone" required />
+        </div>
+        <div class="row">
+            Должность: @Model.UserKind.ToString()
+        </div>
+        <button type="submit" class="btn-primary">
+            Изменить
+        </button>
+        </form>
+    </div>
+    if (ViewData.ContainsKey("Error"))
+    {
+        <div class="text-center" id="error-div">
+            <h3 style="color: red">Ошибка изменения данных</h3>
+        </div>
+    }
+}

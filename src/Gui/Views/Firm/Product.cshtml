@@ -1,0 +1,78 @@
+﻿@model Gui.Models.ProductWithWareProd
+@{
+    ViewData["Title"] = "Товар";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Товар</h1>
+</div>
+@if (Model == null || Model.Product == null || Model.Data == null)
+{
+    <div class="text-center" id="error-div">
+        <h3 style="color: red">Ошибка отображения информации</h3>
+    </div>
+}
+else
+{
+    <div class="column-md-18">
+        <br>
+        <div class="column-md-16" style="border-style: solid; border-width: 2px; align-content: center; width: 50%; margin: 0 auto">
+            <div class="text-center" style="font-size: 18px">
+                Товар номер @Model.Product.Id
+            </div>
+            <div class="text-center">
+                Название: @Model.Product.Name
+            </div>
+            <div class="text-center">
+                Категория: @Model.Product.Category.Name
+            </div>
+            <div class="text-center">
+                Цена: @Model.Product.Cost
+            </div>
+            <div class="text-center">
+                Производитель: @Model.Product.Producer.Name
+            </div>
+        </div>
+        <br />
+        <form method="post" asp-controller="Firm" asp-action="DelProduct" asp-route-id=@Model.Product.Id>
+            <button type="submit" style="width: 20%; margin-left: 40%" class="btn-primary">
+                Удалить
+            </button>
+        </form>
+        <br />
+        <form method="get" asp-controller="Firm" asp-action="ProductEdit" asp-route-id=@Model.Product.Id>
+            <button type="submit" style="width: 20%; margin-left: 40%" class="btn-primary">
+                Изменить
+            </button>
+        </form>
+        <br />
+        <form method="get" asp-controller="Firm" asp-action="ProductAdd" asp-route-id=@Model.Product.Id>
+            <button type="submit" style="width: 20%; margin-left: 40%" class="btn-primary">
+                Добавить на склад
+            </button>
+        </form>
+        <div class="column-md-18">
+            <br>
+            @if (Model.Data.Count == 0)
+            {
+                <div class="text-center" id="error-div">
+                    <h4>Товара нет на складах</h4>
+                </div>
+            }
+            <br>
+            @foreach (var elem in Model.Data)
+            {
+                <div class="column-md-16" style="border-style: solid; border-width: 2px; align-content: center; width: 50%; margin: 0 auto">
+                    <div class="text-center">
+                        Склад: @elem.Warehouse.Address
+                    </div>
+                    <div class="text-center">
+                        Количество: @elem.Amount
+                    </div>
+                </div>
+                <br>
+                <br>
+            }
+        </div>
+    </div>
+}

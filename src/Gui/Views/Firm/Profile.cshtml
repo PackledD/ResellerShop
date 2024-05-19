@@ -1,0 +1,46 @@
+﻿@model BuisnessLogic.models.Firm
+@{
+    ViewData["Title"] = "Фирма";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Ваша фирма</h1>
+</div>
+@if (Model == null)
+{
+    <div class="text-center" id="error-div">
+        <h3 style="color: red">Ошибка отображения информации</h3>
+    </div>
+}
+else
+{
+    <div class="column-md-18">
+        <div class="row">
+            Название: @Model.Name
+        </div>
+        <div class="row">
+            Email: @Model.Email
+        </div>
+        <div class="row">
+            Телефон: @Model.Phone
+        </div>
+        <div class="row">
+            Физ. адрес: @Model.PhysAddr
+        </div>
+        <div class="row">
+            Юр. адрес: @Model.LawAddr
+        </div>
+        <br>
+        <div class="row">
+            <form method="get" asp-controller="Firm" asp-action="Contracts">
+            <button type="submit" style="min-width: 150px" class="btn-primary">Контракты</button>
+            </form>
+        </div>
+        <br>
+        <div class="row">
+            <form method="get" asp-controller="Firm" asp-action="Products">
+                <button type="submit" style="min-width: 150px" class="btn-primary">Товары</button>
+            </form>
+        </div>
+    </div>
+}

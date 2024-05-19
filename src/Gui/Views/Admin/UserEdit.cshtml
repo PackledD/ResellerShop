@@ -1,0 +1,53 @@
+﻿@using BuisnessLogic.models
+@model User
+@{
+    ViewData["Title"] = "Пользователь - редактирование";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Пользователь</h1>
+</div>
+@if (Model == null)
+{
+    <div class="text-center" id="error-div">
+        <h3 style="color: red">Ошибка отображения информации</h3>
+    </div>
+}
+else
+{
+    <div class="column-md-18">
+        <form method="post" asp-controller="Admin" asp-action="UserEdit" asp-route-id=@Model.Id>
+        <div class="column-md-16" style="border-style: solid; border-width: 2px; align-content: center; width: 50%; margin: 0 auto">
+            <div class="text-center" style="font-size: 18px">
+                Пользователь номер @Model.Id
+            </div>
+            <div class="text-center">
+                ФИО:
+                <input class="form-control" type="text" name="name" value="@Model.FullName" required />
+            </div>
+            <div class="text-center">
+                Фирма:
+                <select name="firmId" class="form-control" asp-items=@ViewBag.Firms required>
+                </select>
+            </div>
+            <div class="text-center">
+                Email:
+                <input class="form-control" type="email" name="email" value="@Model.Email" required />
+            </div>
+            <div class="text-center">
+                Телефон:
+                <input class="form-control" type="text" name="phone" value="@Model.Phone" required />
+            </div>
+            <div class="text-center">
+                Статус:
+                <select name="kind" class="form-control" asp-items=@ViewBag.Kinds required>
+                </select>
+            </div>
+        </div>
+        <br>
+        <button type="submit" style="width: 20%; margin-left: 40%" class="btn-primary">
+            Изменить
+        </button>
+        </form>
+    </div>
+}

@@ -1,0 +1,127 @@
+\chapter{Конструкторский раздел}
+В данном разделе рассмотрено проектирование ПО.
+
+\section{Описание сущностей}
+\begin{enumerate}
+	\item Фирма имеет следующие атрибуты: 
+	\begin{itemize}
+		\item[---] ID;
+		\item[---] название;
+		\item[---] телефон;
+		\item[---] email;
+		\item[---] физический адрес;
+		\item[---] юридический адрес.
+	\end{itemize}
+	
+	\item Менеджер имеет следующие атрибуты: 
+	\begin{itemize}
+		\item[---] ID;
+		\item[---] ФИО;
+		\item[---] фирма;
+		\item[---] телефон;
+		\item[---] email.
+	\end{itemize}
+	
+	\item Руководитель имеет следующие атрибуты: 
+	\begin{itemize}
+		\item[---] ID;
+		\item[---] ФИО;
+		\item[---] фирма;
+		\item[---] телефон;
+		\item[---] email.
+	\end{itemize}
+\newpage
+	\item Товар имеет следующие атрибуты: 
+	\begin{itemize}
+		\item[---] ID;
+		\item[---] название;
+		\item[---] категория;
+		\item[---] поставщик;
+		\item[---] стоимость;
+		\item[---] производитель.
+	\end{itemize}
+	
+	\item Категория товара имеет следующие атрибуты: 
+	\begin{itemize}
+		\item[---] ID;
+		\item[---] название.
+	\end{itemize}
+	
+	\item Склад имеет следующие атрибуты: 
+	\begin{itemize}
+		\item[---] ID;
+		\item[---] адрес.
+	\end{itemize}
+	
+	\item Контракт имеет следующие атрибуты: 
+	\begin{itemize}
+		\item[---] ID;
+		\item[---] ID фирмы;
+		\item[---] руководитель 1;
+		\item[---] руководитель 2;
+		\item[---] менеджер 1;
+		\item[---] менеджер 2;
+		\item[---] дата заключения;
+		\item[---] дата истечения;
+		\item[---] документ.
+	\end{itemize}
+\newpage
+	\item Товар на складе имеет следующие атрибуты: 
+	\begin{itemize}
+		\item[---] ID товара;
+		\item[---] ID склада;
+		\item[---] количество. 
+	\end{itemize}
+	
+	\item Позиция контракта имеет следующие атрибуты: 
+	\begin{itemize}
+		\item[---] ID контракта;
+		\item[---] ID товара;
+		\item[---] ID склада;
+		\item[---] количество. 
+	\end{itemize}
+\end{enumerate}
+
+На рисунке \ref{er_model} представлена ER-модель в нотации Чена.
+\begin{figure}[h!]
+	\center{\includesvg[inkscapelatex=false,width=\textwidth]{er.svg}}
+	\caption{ER-модель в нотации Чена}
+	\label{er_model}
+\end{figure}
+
+\section{Ролевая модель}
+Выделены следующие роли:
+\begin{enumerate}
+	\item Менеджер --- менеджер фирмы; может управлять товарами (добавлять, изменять и удалять), а также составлять контракты от лица своей фирмы.
+	\item Руководитель --- руководитель фирмы; может управлять товарами (добавлять, изменять и удалять), а также подписывать контракты от лица своей фирмы.
+	\item Администратор --- суперпользователь; может управлять (добавлять, изменять и удалять) всеми компонентами системы (фирмами, складами, товарами и пользователями).
+\end{enumerate}
+
+\clearpage
+В соответствии с ролевой моделью, на рисунке \ref{use_case} приведена диаграмма прецедентов.
+\begin{figure}[h!]
+	\center{\includesvg[inkscapelatex=false,width=\textwidth]{use_case.svg}}
+	\caption{Диаграмма прецедентов}
+	\label{use_case}
+\end{figure}
+
+\clearpage
+\section{Структура программы}
+На рисунке \ref{up_level} приведена верхнеуровневая UML-диаграмма модулей.
+\begin{figure}[h!]
+	\center{\includesvg[inkscapelatex=false,width=\textwidth]{up_level.svg}}
+	\caption{Верхнеуровневая UML-диаграмма модулей}
+	\label{up_level}
+\end{figure}
+ПО состоит из трех компонентов: компонент бизнес-логики, компонент доступа к данным и компонент пользовательского интерфейса.
+
+На рисунке \ref{uml} приведена UML-диаграмма классов разрабатываемого ПО.
+\begin{figure}[h!]
+	\center{\includesvg[inkscapelatex=false,width=\textwidth]{uml.svg}}
+	\caption{UML-диаграмма классов}
+	\label{uml}
+\end{figure}
+
+
+\section{Вывод из конструкторского раздела}
+В данном разделе было рассмотрено проектирование ПО.

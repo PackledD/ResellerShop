@@ -1,0 +1,11 @@
+{
+	"dbData": [
+		{
+			"type": "postgres",
+			"dbHost": "localhost",
+			"dbName": "resell_data",
+			"userLogin": "admin",
+			"userPassword": "pg_admin"
+		}
+	]
+}
