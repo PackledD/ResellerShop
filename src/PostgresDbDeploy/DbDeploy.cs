@@ -89,6 +89,20 @@ sql += "ALTER TABLE IF EXISTS AuthData " +
 
 sql += "INSERT INTO Firms VALUES " +
     "(0, 'Reseller Shop', '1234567890', 'firm@firm.org', 'Phys addr', 'Legal addr');";
+
+sql += "CREATE OR REPLACE FUNCTION next_id(tname text) " +
+    "RETURNS integer " +
+    "LANGUAGE 'plpgsql' " +
+    "AS $BODY$ " +
+    "DECLARE ret INT; " +
+    "BEGIN " +
+        "EXECUTE 'SELECT max(id) + 1 FROM ' || tname INTO ret; " +
+        "IF ret IS NULL THEN " +
+            "ret = 1; " +
+        "END IF; " +
+        "RETURN ret; " +
+    "END " +
+    "$BODY$;";
 IConfigCreator cfgCreator = new PostgresConfigCreator();
 IConfig cfg = cfgCreator.Create("config.json");
 IDbConnector con = PostgresDbConnectorCreator.Create(); ;

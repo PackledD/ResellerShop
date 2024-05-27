@@ -13,11 +13,12 @@ using General;
 using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.AspNetCore.Mvc.ViewFeatures.Buffers;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
-
+using Microsoft.AspNetCore.Authorization;
 
 namespace Gui.controllers
 {
     [Controller]
+    [Authorize]
     public class ProfileController : Controller
     {
         private static BuisnessLogic.controllers_inner.UserController innerCtrl;

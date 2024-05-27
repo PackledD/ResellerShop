@@ -39,6 +39,12 @@
                                     <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Panel">Админ-панель</a>
                                 </li>
                             }
+                            @if (User.IsInRole("Auditor"))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Audit" asp-action="Contracts">Аудит</a>
+                                </li>
+                            }
                             <li class="nav-item">
                                 <a class="nav-link text-dark" href="javascript:void(0)"
                                    onClick="document.getElementById('logout_form').submit()">Выйти</a>

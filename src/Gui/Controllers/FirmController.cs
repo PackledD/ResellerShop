@@ -16,10 +16,13 @@ using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Gui.Models;
 using System.IO;
 using Microsoft.Extensions.Hosting.Internal;
+using Microsoft.AspNetCore.Authorization;
+using System.Data;
 
 namespace Gui.controllers
 {
     [Controller]
+    [Authorize]
     public class FirmController : Controller
     {
         private static BuisnessLogic.controllers_inner.FirmController innerCtrl;

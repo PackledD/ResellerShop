@@ -1,0 +1,57 @@
+﻿@using BuisnessLogic.models
+@{
+    ViewData["Title"] = "Контракты";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Список контрактов</h1>
+</div>
+@if (ViewBag.Contracts == null)
+{
+    <div class="text-center" id="error-div">
+        <h3 style="color: red">Ошибка отображения информации</h3>
+    </div>
+}
+else
+{
+    <div class="column-md-18">
+        <br>
+        @if (ViewBag.Contracts.Count == 0)
+        {
+            <div class="text-center" id="error-div">
+                <h4>Контрактов нет</h4>
+            </div>
+        }
+        @foreach (var elem in (ViewBag.Contracts as List<Contract>))
+        {
+            <div class="column-md-16" style="border-style: solid; border-width: 2px; align-content: center; width: 50%; margin: 0 auto">
+                <div class="text-center" style="font-size: 18px">
+                    <a asp-controller="Audit" asp-action="Contract" asp-route-id=@elem.Id>Контракт номер @elem.Id</a>
+                </div>
+                <div class="text-center">
+                    Менеджер 1: @elem.Manager1?.FullName
+                </div>
+                <div class="text-center">
+                    Менеджер 2: @elem.Manager2?.FullName
+                </div>
+                <div class="text-center">
+                    Руководитель 1: @elem.Director1?.FullName
+                </div>
+                <div class="text-center">
+                    Руководитель 2: @elem.Director2?.FullName
+                </div>
+                <div class="text-center">
+                    Дата заключения: @elem.ConclusionDate.ToShortDateString()
+                </div>
+                <div class="text-center">
+                    Дата истечения: @elem.ExpirationDate.ToShortDateString()
+                </div>
+                <div class="text-center">
+                    Документ: <a target="_blank" href="/files/@elem.Document">@elem.Document</a>
+                </div>
+            </div>
+            <br>
+            <br>
+        }
+    </div>
+}

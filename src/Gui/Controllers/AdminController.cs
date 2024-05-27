@@ -15,10 +15,12 @@ using Microsoft.AspNetCore.Mvc.ViewFeatures.Buffers;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Gui.Models;
 using BuisnessLogic.enums;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Gui.controllers
 {
     [Controller]
+    [Authorize(Roles = "Admin")]
     public class AdminController : Controller
     {
         private static ControllerManager innerMng;
@@ -438,7 +440,8 @@ namespace Gui.controllers
                     {UsersEnum.Manager.ToString(), UsersEnum.Manager + ""},
                     {UsersEnum.Director.ToString(), UsersEnum.Director + ""},
                     {UsersEnum.Admin.ToString(), UsersEnum.Admin + ""},
-                    {UsersEnum.NotSet.ToString(), UsersEnum.NotSet + ""}
+                    {UsersEnum.NotSet.ToString(), UsersEnum.NotSet + ""},
+                    {UsersEnum.Auditor.ToString(), UsersEnum.Auditor + ""}
                 };
                 ViewBag.Kinds = new SelectList(dict, "Key", "Value");
             }
@@ -482,7 +485,8 @@ namespace Gui.controllers
                     {UsersEnum.Manager.ToString(), UsersEnum.Manager + ""},
                     {UsersEnum.Director.ToString(), UsersEnum.Director + ""},
                     {UsersEnum.Admin.ToString(), UsersEnum.Admin + ""},
-                    {UsersEnum.NotSet.ToString(), UsersEnum.NotSet + ""}
+                    {UsersEnum.NotSet.ToString(), UsersEnum.NotSet + ""},
+                    {UsersEnum.Auditor.ToString(), UsersEnum.Auditor + ""}
                 };
                 ViewBag.Kinds = new SelectList(dict, "Key", "Value", md.UserKind);
             }

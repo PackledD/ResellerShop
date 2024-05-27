@@ -14,6 +14,7 @@ ProfileController.SetInnerManager(mng);
 FirmController.SetInnerManager(mng);
 ProductController.SetInnerManager(mng);
 AdminController.SetInnerManager(mng);
+AuditController.SetInnerManager(mng);
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,8 +22,8 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(option =>
     {
-        option.LoginPath = new PathString("/Login");
-        option.AccessDeniedPath = new PathString("/AccessDenied");
+        option.LoginPath = new PathString("/Auth/Login");
+        option.AccessDeniedPath = new PathString("/Auth/Login");
     });
 
 var app = builder.Build();

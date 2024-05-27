@@ -1,0 +1,13 @@
+CREATE OR REPLACE FUNCTION next_id(tname text)
+RETURNS INT
+AS $$
+DECLARE ret INT;
+BEGIN
+	EXECUTE 'SELECT max(id) + 1 FROM ' || tname INTO ret;
+	IF ret IS NULL THEN
+		ret = 1;
+	END IF;
+	RETURN ret;
+END
+$$
+LANGUAGE plpgsql;

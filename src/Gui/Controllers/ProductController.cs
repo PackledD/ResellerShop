@@ -14,10 +14,12 @@ using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.AspNetCore.Mvc.ViewFeatures.Buffers;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Gui.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Gui.controllers
 {
     [Controller]
+    [Authorize]
     public class ProductController : Controller
     {
         private static BuisnessLogic.controllers_inner.ProductController innerCtrl;

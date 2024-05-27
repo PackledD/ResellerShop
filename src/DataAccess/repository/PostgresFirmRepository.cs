@@ -27,13 +27,9 @@ namespace DataAccess.repository
         private int GetNextId()
         {
             IDbConnector con = PostgresDbConnectorCreator.Create();
-            string sql = string.Format("SELECT max(id) + 1 FROM Firms");
+            string sql = string.Format("SELECT next_id('Firms')");
             object res = con.Request(sql).ExecScalar();
             con.Close();
-            if (res.GetType() == DBNull.Value.GetType())
-            {
-                return 1;
-            }
             return Convert.ToInt32(res);
         }
         public void Add(Firm firm)

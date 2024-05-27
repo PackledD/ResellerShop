@@ -1,0 +1,28 @@
+[27.05.2024 12:43:47][INFO] Begins session
+[27.05.2024 12:43:57][INFO] Firm was got
+[27.05.2024 12:43:57][INFO] User was got
+[27.05.2024 12:43:59][INFO] Firm was got
+[27.05.2024 12:43:59][INFO] User was got
+[27.05.2024 12:44:01][INFO] Firm was got
+[27.05.2024 12:44:01][INFO] All categories were got
+[27.05.2024 12:44:01][INFO] All firms were got
+[27.05.2024 12:44:01][INFO] All products were got
+[27.05.2024 12:44:01][INFO] Firm was got
+[27.05.2024 12:44:01][INFO] User was got
+[27.05.2024 12:44:05][INFO] Category was got
+[27.05.2024 12:44:05][INFO] Firm was got
+[27.05.2024 12:44:05][INFO] All categories were got
+[27.05.2024 12:44:05][INFO] All firms were got
+[27.05.2024 12:44:05][INFO] All products by category were got
+[27.05.2024 12:44:05][INFO] Firm was got
+[27.05.2024 12:44:05][INFO] User was got
+[27.05.2024 12:44:10][INFO] All categories were got
+[27.05.2024 12:44:18][INFO] Category was got
+[27.05.2024 12:44:19][INFO] Category was got
+[27.05.2024 12:44:24][INFO] Category was got
+[27.05.2024 12:44:24][INFO] Category was updated
+[27.05.2024 12:44:24][INFO] Category was got
+[27.05.2024 12:45:01][INFO] Firm was got
+[27.05.2024 12:45:01][INFO] User was authenticate
+[27.05.2024 12:45:04][INFO] Firm was got
+[27.05.2024 12:45:04][INFO] User was got
